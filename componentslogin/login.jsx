@@ -1,21 +1,21 @@
 import React, { useRef, useState } from "react";
+import { motion } from "framer-motion"
 import LoginImg from "../assets/images/booooook.png";
 import { BrowserRouter, Routes, Route, Link, useFetcher } from 'react-router-dom'; // Importing Link from react-router-dom
 import NavBare from "../Component/NavBare";
 import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
+import { MdEmail, MdImportExport } from "react-icons/md";
 import { FaInstagram } from "react-icons/fa";
 import { FaRegCopyright } from "react-icons/fa6";
 import { FaPhoneVolume } from "react-icons/fa6";
-import Pixelimage from "../componentcatge/image/pexels-marta-dzedyshko-2067569.jpg"
+import Pixelimage from "../assets/images/luisa-brimble-VfHoMBagDPc-unsplash.jpg"
 import useFetch from "use-http";
 import axios from 'axios';
-
+import { scroll } from "framer-motion/dom"
 function Login() {
 //  const { post } = useFetch('http://localhost:3000');
 //const {get , post , response, loading , error} =useFetch('http://localhost:3000') ; 
-
 const [username, setUsername] = useState("");
 const [password, setPassword] = useState("");
 const inputUserName = useRef() ; 
@@ -29,7 +29,30 @@ password :inputpassword.current.value
 }
 
 
+ /* const validateForm = async (e) => {
+    e.preventDefault();
+    const nameValue = statename;
+    const passwordValue = statepassowrd;
 
+    try {
+      const etudData = await post("/login", {
+        Name: nameValue,
+        Motpass: passwordValue
+      });
+
+      if (etudData) {
+        // Handle successful login
+        console.log("Login successful:", etudData);
+      } else {
+        // Handle failed login
+        setError("Invalid username or password."); // Set error state
+      }
+    } catch (error) {
+      // Handle network or server errors
+      console.error("Error during login:", error);
+      setError("An error occurred during login."); // Set error state
+    }
+  };*/
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -57,9 +80,21 @@ password :inputpassword.current.value
   
   return (
     <>
-      <NavBare />
-      <div className="flex  min-h-full flex-rows  m-auto   mt-10 w-4/6   ring-30   rounded-xl border-2  text-gray-900 shadow-sm ring-3 ring-inset ring-gray-300 placeholder:text-gray-400 h-[500px]">
-        <div className=""> <img src={Pixelimage} alt=""  className="w-[450px] h-full   rounded-xl border-2 max-sm:hidden max-md:hidden max-lg:visible" />
+
+      <NavBare /> 
+      <motion.div
+      className="younes"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 1,
+        delay: 0.5,
+  
+      }}
+      
+    >
+      <div className="younes flex  min-h-full flex-rows  m-auto   mt-10 w-4/6   ring-30   rounded-xl border-2  text-gray-900 shadow-sm ring-3 ring-inset ring-gray-300 placeholder:text-gray-400 h-[500px]">
+        <div className=""> <img src={Pixelimage} alt=""  className="w-[500px] h-full   rounded-xl border-2 max-sm:hidden max-md:hidden max-lg:visible" />
         </div>
         <div className="mx-auto">
         <div className=" ">
@@ -116,6 +151,7 @@ password :inputpassword.current.value
 
 
       </div>
+      </motion.div>
     </>
   );
 }
